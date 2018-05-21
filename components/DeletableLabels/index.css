@@ -20,13 +20,19 @@
   cursor: pointer;
 }
 
+.deletable-labels-opensearch li {
+  margin-right: .5em;
+}
+
 .deletable-labels-opensearch .icon-delete {
+  display: none;
+
   position: absolute;
   top: -5px;
-  right: 3px;
-  color: #f30;
+  right: -16px;
+  width: 1em;
 
-  display: none;
+  color: #f30;
 }
 
 .deletable-labels-opensearch .icon-delete.show {

@@ -1,0 +1,55 @@
+.deletable-labels {
+  padding: 7px 10px;
+  min-height: 22px;
+  border: 1px solid #E4E8EB;
+  border-radius: 3px;
+}
+
+.deletable-labels ul {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+.deletable-labels li {
+  position: relative;
+  display: inline-block;
+  line-height: 1.5em;
+}
+.deletable-labels .icon-delete {
+  cursor: pointer;
+}
+
+.deletable-labels-opensearch .icon-delete {
+  position: absolute;
+  top: -5px;
+  right: 3px;
+  color: #f30;
+
+  display: none;
+}
+
+.deletable-labels-opensearch .icon-delete.show {
+  display: inline !important;
+}
+
+
+.deletable-labels-wechat li {
+  background-color: #F3F3F3;
+}
+.deletable-labels-wechat li > label {
+  padding: 0 4px;
+}
+
+.deletable-labels-wechat li > span {
+  padding: 0 6px;
+  border-left: 1px solid #DFDFDF;
+}
+
+.deletable-labels-wechat .input-deleter {
+  outline: none;
+  font-size: .9em;
+  width: 5em;
+  border-width: 0;
+}
+

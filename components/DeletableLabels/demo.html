@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta lang="zh">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="name id label">
+    <meta name="keyword" content="">
+    <title>DeletableLabels Component Demo IE8+</title>
+
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <h2>需求</h2>
+    <ol>
+      <li>输入框里面只显示名字，但是给后台要 id。</li>
+      <li>名字 hover 显示删除图标</li>
+      <li>用户点击删除图标，可删除一个名字，对应的 id 也要相应少传一个给后台。</li>
+      <li>名字不能一个一个字的删，要删一下就删掉整个名字。</li>
+      <li>删除后可立即获取更新后的数据</li>
+      <li>可动态设置数据</li>
+      <li>可清空数据</li>
+      <li>名字是用分号分开的</li>
+    </ol>
+
+    <div id="deletable-label-wrapper"></div>
+
+    <button id="deletable-label-submitter" type="primary">确定</button>
+    <button id="deletable-label-set-new-labels" type="button">设置新的数据</button>
+    <button id="deletable-label-clearer" type="button">清空</button>
+
+    <script src="https://cdn.bootcss.com/jquery/1.7/jquery.min.js"></script>
+
+    <!-- for findIndex -->
+    <script src="https://cdn.bootcss.com/es6-shim/0.35.3/es6-shim.min.js"></script>
+    <script src="./index.js"></script>
+
+    <script>
+      const labels = [
+        { name: '刘传宗', id: 1 },
+        { name: 'legend80s', id: 2 },
+        { name: '刘传宗', id: 3 },
+      ];
+
+      const deletableLabels = new DeletableLabels({
+        el: '#deletable-label-wrapper',
+        type: DeletableLabels.WECHAT,
+        labels: labels,
+        maxLabelCount: 5,
+
+        deleted: function (deleted) {
+          console.log('deleted:', deleted);
+          console.log('after deleted labels:', this.labels);
+        },
+
+        added: function (added) {
+          console.log('added:', added);
+          console.log('after added labels:', this.labels);
+        },
+      });
+
+      $('#deletable-label-submitter').on('click', function submit() {
+        console.log('save labels to backend:', deletableLabels.getLabels());
+      });
+
+      $('#deletable-label-set-new-labels').on('click', function reset() {
+        const labels = [
+          { name: '刘传宗-2', id: 4 },
+          { name: 'legend80s-2', id: 5 },
+          { name: '刘传宗-2', id: 6 },
+        ];
+
+        deletableLabels.setLabels(labels);
+      });
+
+      $('#deletable-label-clearer').on('click', function submit() {
+        deletableLabels.clear();
+      });
+    </script>
+  </body>
+</html>

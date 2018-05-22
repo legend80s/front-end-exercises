@@ -7,7 +7,7 @@
  * @param {Function} options.deleted 删除一个元素的回调函数，形参是刚删除的元素
  * @param {Function} options.added 新增一个元素的回调函数，形参是刚新增的元素
  * @param {Number} options.maxLabelCount 标签数上限
- * @param {string=opensearch} options.type 样式：opensearch | wechat
+ * @param {string=opensearch} options.theme 样式：opensearch | wechat
  */
 function DeletableLabels(options) {
   this.$element = $(options.el);
@@ -16,7 +16,8 @@ function DeletableLabels(options) {
   this.deleted = options.deleted || jQuery.noop;
   this.added = options.added || jQuery.noop;
   this.maxLabelCount = options.maxLabelCount || DeletableLabels.MAX_LABEL_COUNT;
-  this.type = DeletableLabels.TYPES.includes(options.type) ? options.type : DeletableLabels.OPENSEARCH;
+
+  this.theme = DeletableLabels.normalizeTheme(options.theme);
 
   // console.log('options:', JSON.stringify(options, null, 2));
 
@@ -43,10 +44,10 @@ DeletableLabels.prototype.render = function () {
  */
 DeletableLabels.prototype.renderContainer = function () {
   this.$element.append(`
-    <div id="deletable-labels-wrapper" class="deletable-labels deletable-labels-${this.type}">
+    <div id="deletable-labels-wrapper" class="deletable-labels deletable-labels-${this.theme}">
       <ul id="names"></ul>
 
-      ${this.isWechatType() ? '<input type="text" class="input-deleter" />' : ''}
+      <input type="text" class="input-deleter" />
     </div>
   `);
 
@@ -82,7 +83,7 @@ DeletableLabels.prototype.renderNames = function () {
 DeletableLabels.prototype.react = function () {
   this.deletable();
 
-  if (this.isWechatType()) {
+  if (this.isWechatTheme()) {
     this.inputReact();
   }
 };
@@ -166,10 +167,11 @@ DeletableLabels.prototype.addByInput = function () {
 
 /**
  * 是否是 WeChat 样式
+ * @private
  * @return {Boolean}
  */
-DeletableLabels.prototype.isWechatType = function () {
-  return this.type === DeletableLabels.WECHAT;
+DeletableLabels.prototype.isWechatTheme = function () {
+  return this.theme === DeletableLabels.THEME_WECHAT;
 };
 
 /**
@@ -277,9 +279,36 @@ DeletableLabels.prototype.clear = function () {
   return this;
 };
 
-DeletableLabels.TYPES = ['opensearch', 'wechat'];
-DeletableLabels.OPENSEARCH = DeletableLabels.TYPES[0];
-DeletableLabels.WECHAT = DeletableLabels.TYPES[1];
+/**
+ * 设置 UI 风格
+ *
+ * @public
+ * @param {string} theme
+ * @return {DeletableLabels}
+ */
+DeletableLabels.prototype.setTheme = function (theme) {
+  this.$wrapper.removeClass(`deletable-labels-${this.theme}`);
+
+  this.theme = DeletableLabels.normalizeTheme(theme);
+
+  this.$wrapper.addClass(`deletable-labels-${this.theme}`);
+
+  return this;
+};
+
+/**
+ * 将传入的 theme 规范化
+ * 若非 opensearch wechat 之一，则返回 opensearch
+ * @param  {string} theme 任意字符串
+ * @return {string}
+ */
+DeletableLabels.normalizeTheme = function (theme) {
+  return DeletableLabels.THEMES.includes(theme) ? theme : DeletableLabels.THEME_OPENSEARCH;
+}
+
+DeletableLabels.THEMES = ['opensearch', 'wechat'];
+DeletableLabels.THEME_OPENSEARCH = DeletableLabels.THEMES[0];
+DeletableLabels.THEME_WECHAT = DeletableLabels.THEMES[1];
 
 DeletableLabels.KEY_CODE_DELETE = 8;
 DeletableLabels.KEY_CODE_ENTER = 13;

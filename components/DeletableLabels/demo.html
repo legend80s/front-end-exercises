@@ -66,6 +66,8 @@
           <button id="deletable-label-submitter" type="primary">确定</button>
           <button id="deletable-label-set-new-labels" type="button">设置新的数据</button>
           <button id="deletable-label-clearer" type="button">清空</button>
+
+          <button id="deletable-label-theme-toggler" type="button">切换到 <b id="deletable-label-theme"></b> 样式</button>
         </div>
       </div>
     </div>
@@ -83,9 +85,13 @@
         { name: '刘传宗', id: 3 },
       ];
 
+      const currentTheme = DeletableLabels.THEME_WECHAT;
+      const themeLabel = $('#deletable-label-theme');
+      let nextTheme = renderThemeLabel(themeLabel, currentTheme, DeletableLabels.THEMES);
+
       const deletableLabels = new DeletableLabels({
         el: '#deletable-label-wrapper',
-        type: DeletableLabels.WECHAT,
+        theme: currentTheme,
         labels: labels,
         maxLabelCount: 5,
 
@@ -117,6 +123,19 @@
       $('#deletable-label-clearer').on('click', function submit() {
         deletableLabels.clear();
       });
+
+      $('#deletable-label-theme-toggler').on('click', function toggle() {
+        deletableLabels.setTheme(nextTheme);
+        nextTheme = renderThemeLabel(themeLabel, nextTheme, DeletableLabels.THEMES);
+      });
+
+      function renderThemeLabel(themeLabel, theme, themes) {
+        const nextTheme = themes.filter(t => t !== theme)[0];
+
+        themeLabel.text(nextTheme);
+
+        return nextTheme;
+      }
     </script>
   </body>
 </html>

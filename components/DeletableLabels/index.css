@@ -14,10 +14,16 @@
 .deletable-labels li {
   position: relative;
   display: inline-block;
+  padding: .2em .4em;
   line-height: 1.5em;
+  background-color: #F3F3F3;
 }
+
 .deletable-labels .icon-delete {
   cursor: pointer;
+}
+.deletable-labels .input-deleter {
+  display: none;
 }
 
 .deletable-labels-opensearch li {
@@ -28,11 +34,12 @@
   display: none;
 
   position: absolute;
-  top: -5px;
-  right: -16px;
+  top: -12px;
+  right: -10px;
   width: 1em;
 
   color: #f30;
+  /*color: #FA5151;*/
 }
 
 .deletable-labels-opensearch li:hover > .icon-delete {
@@ -47,11 +54,12 @@
 }
 
 .deletable-labels-wechat li > span {
-  padding: 0 6px;
+  padding-left: .4em;
   border-left: 1px solid #DFDFDF;
 }
 
-.deletable-labels-wechat .input-deleter {
+.deletable-labels.deletable-labels-wechat .input-deleter {
+  display: inline;
   outline: none;
   font-size: .9em;
   width: 5em;

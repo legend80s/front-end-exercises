@@ -35,10 +35,9 @@
   color: #f30;
 }
 
-.deletable-labels-opensearch .icon-delete.show {
+.deletable-labels-opensearch li:hover > .icon-delete {
   display: inline !important;
 }
-
 
 .deletable-labels-wechat li {
   background-color: #F3F3F3;
@@ -59,3 +58,9 @@
   border-width: 0;
 }
 
+.deletable-labels-wechat .icon-delete {
+  color: #9A9A9A;
+}
+.deletable-labels-wechat .icon-delete:hover {
+  color: #000;
+}

@@ -84,8 +84,6 @@ DeletableLabels.prototype.react = function () {
 
   if (this.isWechatType()) {
     this.inputReact();
-  } else {
-    this.deleterHoverable();
   }
 };
 
@@ -109,25 +107,19 @@ DeletableLabels.prototype.deletable = function () {
 };
 
 /**
- * hover 展示删除按钮 - OpenSearch 样式
- *
- * @private
- * @return {void}
+ * 为输入框绑定事件 - WeChat 样式
+ * @return {DeletableLabels}
  */
-DeletableLabels.prototype.deleterHoverable = function () {
-  this.$element.on('hover', 'li', function showOnHover() {
-    $(this).children('.icon-delete').toggleClass('show');
-  });
-};
-
 DeletableLabels.prototype.inputReact = function () {
     this.clickToFocusInput();
     this.deleteByIput();
     this.addByInput();
+
+    return this;
 };
 
 /**
- * 点击组件右侧区域光标自动进入 input - Wechat 样式
+ * 点击组件右侧区域光标自动进入 input - WeChat 样式
  *
  * @private
  * @return {void}
@@ -141,7 +133,7 @@ DeletableLabels.prototype.clickToFocusInput = function () {
 };
 
 /**
- * 输入框中按 Del 或 Backspace 键可删除 label - Wechat 样式
+ * 输入框中按 Del 或 Backspace 键可删除 label - WeChat 样式
  *
  * @private
  * @return {void}
@@ -159,7 +151,7 @@ DeletableLabels.prototype.deleteByIput = function () {
 };
 
 /**
- * 输入框中按 Enter 新增 label - Wechat 样式
+ * 输入框中按 Enter 新增 label - WeChat 样式
  *
  * @private
  * @return {void}

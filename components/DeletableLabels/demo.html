@@ -10,25 +10,65 @@
     <title>DeletableLabels Component Demo IE8+</title>
 
     <link rel="stylesheet" href="./index.css">
+    <style>
+    body {
+      background-color: #F6F8F9;
+      padding: 40px 0 80px;
+    }
+
+    .container {
+      width: 90%;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #fff;
+    }
+
+    .content {
+      max-width: 70%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .row {
+      display: flex;
+      margin-bottom: 30px;
+    }
+
+    .label {
+      flex: 1;
+    }
+    .controls {
+      flex: 8;
+    }
+    </style>
   </head>
   <body>
-    <h2>需求</h2>
-    <ol>
-      <li>输入框里面只显示名字，但是给后台要 id。</li>
-      <li>名字 hover 显示删除图标</li>
-      <li>用户点击删除图标，可删除一个名字，对应的 id 也要相应少传一个给后台。</li>
-      <li>名字不能一个一个字的删，要删一下就删掉整个名字。</li>
-      <li>删除后可立即获取更新后的数据</li>
-      <li>可动态设置数据</li>
-      <li>可清空数据</li>
-      <li>名字是用分号分开的</li>
-    </ol>
+    <div class="container">
+      <div class="content">
+        <h2>需求</h2>
+        <ol>
+          <li>输入框里面只显示名字，但是给后台要 id。</li>
+          <li>名字 hover 显示删除图标</li>
+          <li>用户点击删除图标，可删除一个名字，对应的 id 也要相应少传一个给后台。</li>
+          <li>名字不能一个一个字的删，要删一下就删掉整个名字。</li>
+          <li>删除后可立即获取更新后的数据</li>
+          <li>可动态设置数据</li>
+          <li>可清空数据</li>
+          <li>名字是用分号分开的</li>
+        </ol>
 
-    <div id="deletable-label-wrapper"></div>
+        <div class="row">
+          <label class="label">标签</label>
+          <div class="controls" id="deletable-label-wrapper"></div>
+        </div>
 
-    <button id="deletable-label-submitter" type="primary">确定</button>
-    <button id="deletable-label-set-new-labels" type="button">设置新的数据</button>
-    <button id="deletable-label-clearer" type="button">清空</button>
+        <div>
+          <button id="deletable-label-submitter" type="primary">确定</button>
+          <button id="deletable-label-set-new-labels" type="button">设置新的数据</button>
+          <button id="deletable-label-clearer" type="button">清空</button>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdn.bootcss.com/jquery/1.7/jquery.min.js"></script>
 

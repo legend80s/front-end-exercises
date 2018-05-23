@@ -1,4 +1,6 @@
-# exercise 2 name id couple
+# 练习二
+
+可删除的标签列表 - 模仿微信和 OpenSearch
 
 ## 需求 Requirements
 

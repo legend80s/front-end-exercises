@@ -1,0 +1,42 @@
+.counter-input-wrapper {
+  position: relative;
+}
+
+.counter-input-wrapper input.counter-input {
+  width: 100%;
+  padding: .5em;
+  padding-right: 64px;
+  font-size: 14px;
+  border: 1px solid #E4E8EB;
+  border-radius: 3px;
+}
+
+.counter-input-wrapper input.counter-input:focus {
+  outline: 0;
+  border-color: rgba(26, 173, 25, 0.6);
+}
+
+.counter-input-wrapper .counter {
+  position: absolute;
+  top: 8px;
+  right: -65px;
+  color: #9A9A9A;
+}
+
+.counter-input-wrapper .warning-panel {
+  display: none;
+}
+
+.counter-input-wrapper.warning-excedding .warning-panel {
+  display: block;
+  color: #FA5151;
+}
+.counter-input-wrapper.warning-excedding .counter {
+  color: #FA5151;
+}
+.counter-input-wrapper.warning-excedding .counter-input {
+  border-color: #FA5151;
+}
+.counter-input-wrapper.warning-excedding .counter-input:focus {
+  border-color: #FA5151;
+}

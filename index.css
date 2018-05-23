@@ -1,0 +1,29 @@
+body {
+  background-color: #F6F8F9;
+  padding: 40px 0 80px;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+}
+
+.content {
+  max-width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.label {
+  flex: 1;
+}
+.controls {
+  flex: 8;
+}

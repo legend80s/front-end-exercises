@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./components/CounterInput/index.css">
     <!-- DeletableLabels -->
     <link rel="stylesheet" href="./components/DeletableLabels/index.css">
+    <!-- Alert -->
+    <link rel="stylesheet" href="./components/Alert/index.css">
   </head>
   <body>
     <div class="container">
@@ -37,6 +39,44 @@
 
           <button id="deletable-label-theme-toggler" type="button">切换到 <b id="deletable-label-theme"></b> 样式</button>
         </div>
+
+        <!-- alerts begin -->
+        <div class="row">
+          <div class="controls alert alert-success" role="alert">
+            Well done! You successfully read this important alert message.
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="controls alert alert-info" role="alert">
+            Heads up! This alert needs your attention, but it's not super important.
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="controls alert alert-warning" role="alert">
+            Warning! Better check yourself, you're not looking too good.
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="controls alert alert-danger" role="alert">
+            Oh snap! Change a few things up and try submitting again.
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="controls alert alert-warning alert-dismissible" role="alert">
+            Warning! Better check yourself, you're not looking too good.
+          </div>
+        </div>
+        <div class="row">
+          <div class="controls alert alert-danger alert-dismissible" role="alert">
+            Oh snap! Change a few things up and try submitting again.
+          </div>
+        </div>
+        <!-- alerts end -->
+
       </div>
     </div>
 
@@ -47,6 +87,9 @@
     <!-- DeletableLabels -->
     <script src="https://cdn.bootcss.com/jquery/1.7/jquery.min.js"></script>
     <script src="./components/DeletableLabels/index.js"></script>
+
+    <!-- alert -->
+    <script src="./components/Alert/index.js"></script>
 
     <script>
       const labels = [

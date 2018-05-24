@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta lang="zh">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Demos">
+    <meta name="keyword" content="">
+    <title>Demos</title>
+
+    <link rel="stylesheet" href="./index.css">
+    <!-- CounterInput -->
+    <link rel="stylesheet" href="./components/CounterInput/index.css">
+    <!-- DeletableLabels -->
+    <link rel="stylesheet" href="./components/DeletableLabels/index.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="row">
+          <label class="label">标题</label>
+          <div class="controls">
+            <input type="text" counter-input counter-input-max="21" counter-input-exceeding-warning="请正确输入视频标题" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label">标签</label>
+          <div class="controls" id="deletable-label-wrapper"></div>
+        </div>
+
+        <div class="row">
+          <button id="deletable-label-submitter" type="primary">确定</button>
+          <button id="deletable-label-set-new-labels" type="button">设置新的数据</button>
+          <button id="deletable-label-clearer" type="button">清空</button>
+
+          <button id="deletable-label-theme-toggler" type="button">切换到 <b id="deletable-label-theme"></b> 样式</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CounterInput -->
+    <script src="./components/CounterInput/index.js"></script>
+
+    <!-- DeletableLabels -->
+    <script src="https://cdn.bootcss.com/jquery/1.7/jquery.min.js"></script>
+    <script src="./components/DeletableLabels/index.js"></script>
+
+    <script>
+      const labels = [
+        { name: '刘传宗', id: 1 },
+        { name: 'legend80s', id: 2 },
+        { name: '刘传宗', id: 3 },
+      ];
+
+      const currentTheme = DeletableLabels.THEME_WECHAT;
+      const themeLabel = $('#deletable-label-theme');
+      let nextTheme = renderThemeLabel(themeLabel, currentTheme, DeletableLabels.THEMES);
+
+      const deletableLabels = new DeletableLabels({
+        el: '#deletable-label-wrapper',
+        theme: currentTheme,
+        labels: labels,
+        maxLabelCount: 5,
+
+        deleted: function (deleted) {
+          console.log('deleted:', deleted);
+          console.log('after deleted labels:', this.labels);
+        },
+
+        added: function (added) {
+          console.log('added:', added);
+          console.log('after added labels:', this.labels);
+        },
+      });
+
+      $('#deletable-label-submitter').on('click', function submit() {
+        console.log('save labels to backend:', deletableLabels.getLabels());
+      });
+
+      $('#deletable-label-set-new-labels').on('click', function reset() {
+        const labels = [
+          { name: '刘传宗-2', id: 4 },
+          { name: 'legend80s-2', id: 5 },
+          { name: '刘传宗-2', id: 6 },
+        ];
+
+        deletableLabels.setLabels(labels);
+      });
+
+      $('#deletable-label-clearer').on('click', function submit() {
+        deletableLabels.clear();
+      });
+
+      $('#deletable-label-theme-toggler').on('click', function toggle() {
+        deletableLabels.setTheme(nextTheme);
+        nextTheme = renderThemeLabel(themeLabel, nextTheme, DeletableLabels.THEMES);
+      });
+
+      function renderThemeLabel(themeLabel, theme, themes) {
+        const nextTheme = themes.filter(t => t !== theme)[0];
+
+        themeLabel.text(nextTheme);
+
+        return nextTheme;
+      }
+    </script>
+  </body>
+</html>

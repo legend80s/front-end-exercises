@@ -51,20 +51,18 @@ CounterInput.prototype.render = function () {
  * @return {CounterInput}
  */
 CounterInput.prototype.react = function () {
-  this.input.addEventListener('input', () => {
-    this.setWordCount();
+  const that = this;
 
-    const length = this.getLength();
+  this.input.addEventListener('input', function handleInput() {
+    that.setWordCount();
 
-    if (
-        // 超限制
-        (length > this.maxLength) ||
-        // 必填字段，长度却为零
-        (this.input.required && length === 0)
-      ) {
-      this.showWarning();
+    const length = that.getLength();
+
+    // “超限制”或“必填字段，但长度却为零”则显示报错信息
+    if (length > that.maxLength || (that.input.required && length === 0)) {
+      that.showWarning();
     } else {
-      this.hideWarning();
+      that.hideWarning();
     }
   });
 
@@ -109,7 +107,7 @@ CounterInput.prototype.hideWarning = function () {
   return this;
 };
 
-Array.from(document.querySelectorAll('input[counter-input]')).forEach((input) => {
+Array.from(document.querySelectorAll('input[counter-input]')).forEach(function renderAll(input) {
   const maxLength = parseInt(input.getAttribute('counter-input-max'), 10);
 
   if (Number.isNaN(maxLength)) {

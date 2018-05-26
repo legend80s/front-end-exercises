@@ -9,7 +9,7 @@
    <div class="alert alert-danger" role="alert">...</div>
    ```
 
-   ![alerts](/Users/chuanzong.lcz/Documents/learning/programming/js/exercise/front-end-exercises/components/oui-alert/alerts.png)
+   ![alerts](https://raw.githubusercontent.com/legend80s/front-end-exercises/master/components/Alert/alerts.png)
 
 2. 可关闭。点击右侧关闭 icon 可将警告关闭
 
@@ -17,8 +17,6 @@
    <div class="alert alert-warning alert-dismissible" role="alert">
    ```
 
-   ![alert-dismissible](/Users/chuanzong.lcz/Documents/learning/programming/js/exercise/front-end-exercises/components/oui-alert/alert-dismissible.png)
+   ![alert-dismissible](https://raw.githubusercontent.com/legend80s/front-end-exercises/master/components/Alert/alert-dismissible.png)
 
 3. todo
-
-4. Tood
